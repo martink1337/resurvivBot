@@ -16,5 +16,6 @@
     "manager",
     "managers"
   ],
-  "feedback_admins": [220212030546771970, 123456789012345678]
+  "feedback_admins": [220212030546771970, 123456789012345678],
+  "staff_roles": ["admin", "moderator", "owner"]
 }
