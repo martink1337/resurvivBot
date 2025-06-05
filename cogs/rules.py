@@ -8,13 +8,13 @@ class Rules(commands.Cog):
     @commands.command()
     async def rules(self, ctx):
         embed = discord.Embed(
-            title="📜 Правила на сървъра",
+            title="📜 Server Rules",
             description=(
-                "1. Бъди учтив и уважавай останалите.\n"
-                "2. Не спам и не рекламирай без позволение.\n"
-                "3. Спазвай темите на каналите.\n"
-                "4. Не използвай обидни думи.\n"
-                "5. Следвай указанията на модераторите."
+                "1. Be polite and respect others.\n"
+                "2. Do not spam or advertise without permission.\n"
+                "3. Stick to channel topics.\n"
+                "4. Don't use offensive words.\n"
+                "5. Follow the moderators' instructions."
             ),
             color=0x00B037,
         )
