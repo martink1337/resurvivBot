@@ -7,8 +7,8 @@ class Say(commands.Cog):
     @commands.command(name="say")
     @commands.has_permissions(administrator=True)
     async def say(self, ctx, *, message: str):
-        """Изпраща съобщение от името на бота."""
-        await ctx.message.delete()  # Изтрива командата на потребителя
+        """Sends a message on behalf of the bot."""
+        await ctx.message.delete() # Deletes the user command
         await ctx.send(message)
 
 async def setup(bot):
