@@ -4,21 +4,12 @@
 import discord
 from discord.ext import commands
 import aiosqlite
-
+from config import config  # Добави най-отгоре ако още го няма
 
 class Data(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.roles = [
-            "owner",
-            "moderator",
-            "admin",
-            "helper",
-            "admins",
-            "owners" "moderators",
-            "manager",
-            "managers",
-        ]
+        self.roles = config.get("privileged_roles", [])
 
     @commands.Cog.listener()
     async def on_ready(self):
