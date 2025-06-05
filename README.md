@@ -38,19 +38,14 @@ Commands:
 
 `s!duoinfo`: Shows top 10 duo players in the leaderboard
 
-Running the bot:
-1 clone the project
-`git clone https://github.com/martink1337/resurvivBot.git`
-2 cd to the project dir
-`cd FolderName`
-3 run the following command
-`pip3 install -r requirements.txt`
-4 rename the file template-config.json to
-`config.json` and change all inputs
-5 start the bot with
-`python3 main.py`
+## Running the bot
+clone the project with `git clone https://github.com/martink1337/resurvivBot.git`
+cd to the project dir with `cd FolderName`
+run the following command `pip3 install -r requirements.txt`
+rename the file template-config.json to `config.json`
+start the bot with `python3 main.py`
 
-Dependency:
-`Python 3` Installed
+## Dependency
+Installed `Python 3`
 
 This bot removes the work having to go and check stats or updates from resurvev.io. You just need to type the simple commands above once you add the bot to your server.
