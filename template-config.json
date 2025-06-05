@@ -2,5 +2,7 @@
   "bot_token": "bot token here",
   "ticket_category_id": 12312312312,
   "transcripts_channel_id": 234234233,
-  "leaderboard_api_url": "https://api.survev.io/api/leaderboard"
+  "leaderboard_api_url": "https://api.survev.io/api/leaderboard",
+  "user_stats_api_url": "https://api.survev.io/api/user_stats",
+  "match_history_api_url": "https://api.survev.io/api/match_history"
 }
