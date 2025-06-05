@@ -40,9 +40,13 @@ Commands:
 
 ## Running the bot
 clone the project with `git clone https://github.com/martink1337/resurvivBot.git`
+
 cd to the project dir with `cd FolderName`
+
 run the following command `pip3 install -r requirements.txt`
+
 rename the file template-config.json to `config.json`
+
 start the bot with `python3 main.py`
 
 ## Dependency
