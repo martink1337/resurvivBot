@@ -2,12 +2,12 @@ import discord
 from discord.ext import commands
 import aiohttp
 import aiosqlite
-from config import config  # Импортираме конфигурацията
+from config import config  # Import the configuration
 
 class Player(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.url = config.get("user_stats_api_url", "https://api.survev.io/api/user_stats")  # Използваме стойността от конфигурацията
+        self.url = config.get("user_stats_api_url", "https://api.survev.io/api/user_stats")  # We use the value from the configuration
         self.headers = {"content-type": "application/json; charset=UTF-8"}
         self.name = "Player"
         self.msg = "**Argument #1**: Player Name \n**Example**: `s!player obsidian_mb`\n**NOTE**: You must put in the **user's account name** which might differ with their in game name."
@@ -32,7 +32,7 @@ class Player(commands.Cog):
             await ctx.send(
                 f"**{self.name}** command only takes an argument count of **{self.args}**\n{msg}"
             )
-            return  # важно да спрем тук
+            return  # it's important to stop here
 
         player_name = args[1]
         b = player_name.lower()
@@ -51,7 +51,7 @@ class Player(commands.Cog):
             )
             return
 
-        # Проверка дали има валидни данни (примерно slug да не е празно)
+        # Checking whether there is valid data (for example, whether the slug is not empty)
         if not c or not c.get("slug"):
             embed = discord.Embed(
                 description=f"**{player_name}** is not a valid player of api.survev.io.",
@@ -60,14 +60,14 @@ class Player(commands.Cog):
             await ctx.send(embed=embed)
             return
 
-        # Безопасно извличаме данни с .get(), задаваме 0 по подразбиране
+        # Safely retrieve data with .get(), set to 0 by default
         kills = c.get("kills", 0)
         wins = c.get("wins", 0)
         games = c.get("games", 0)
         kg = c.get("kpg", 0)
         modes = c.get("modes", [])
 
-        # За mostKills и mostDamage правим безопасна проверка
+        # For mostKills and mostDamage we do a safe check
         if modes:
             mostkills = max([i.get("mostKills", 0) for i in modes])
             maxdamage = max([i.get("mostDamage", 0) for i in modes])
