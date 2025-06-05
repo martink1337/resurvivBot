@@ -4,7 +4,7 @@ from discord.ext import commands
 import discord
 import aiosqlite
 import aiohttp
-from config import config  # Импортираме конфигурацията
+from config import config  # Import the configuration
 
 class Match(commands.Cog):
     def __init__(self, bot):
@@ -13,7 +13,7 @@ class Match(commands.Cog):
         self.args_english = "1 or 2"
         self.name = "Match History"
         self.msg = "**Example**: `s!matches obsidian_mb 5`"
-        self.url = config.get("match_history_api_url", "https://api.survev.io/api/match_history")  # Използваме стойността от конфигурацията
+        self.url = config.get("match_history_api_url", "https://api.survev.io/api/match_history")  # We use the value from the configuration
         self.headers = {"content-type": "application/json; charset=UTF-8"}
 
     async def check_valid_players(self, player: str):
