@@ -14,26 +14,26 @@ class Ticket(commands.Cog):
         self.panel_message_id = None
 
     async def _check_inactivity(self, channel, member, first_wait=300, second_wait=300):
-        """Проверява дали member е писал в channel, ако не - предупреждава, ако пак не - затваря."""
-        await asyncio.sleep(first_wait)  # първи таймаут - 5 минути
+        """Checks whether a member has posted in the channel, if not - warns, if not - closes."""
+        await asyncio.sleep(first_wait)  # first timeout - 5 minutes
 
         messages = [msg async for msg in channel.history(limit=50, oldest_first=True)]
         has_written = any(msg.author.id == member.id for msg in messages)
 
         if not has_written:
             try:
-                await channel.send(f"{member.mention}, здравей! Ако не напишеш нищо, твоя тикет ще бъде затворен след 5 минути!")
+                await channel.send(f"{member.mention}, Hello! If you don't write anything, your ticket will be closed in 5 minutes!")
             except Exception as e:
-                print(f"Не успях да изпратя предупреждение: {e}")
+                print(f"I was unable to send a warning.: {e}")
 
-            await asyncio.sleep(second_wait)  # втори таймаут - още 5 минути
+            await asyncio.sleep(second_wait)  # second timeout - 5 more minutes
 
             messages = [msg async for msg in channel.history(limit=50, oldest_first=True)]
             has_written = any(msg.author.id == member.id for msg in messages)
 
             if not has_written:
                 try:
-                    # Запиши транскрипта преди да изтриеш канала
+                    # Save the transcript before deleting the channel
                     transcript = ""
                     for msg in messages:
                         timestamp = msg.created_at.strftime("%Y-%m-%d %H:%M")
@@ -49,19 +49,19 @@ class Ticket(commands.Cog):
 
                     os.remove(filename)
                 except Exception as e:
-                    print(f"Грешка при създаване на транскрипта: {e}")
+                    print(f"Error creating transcript: {e}")
 
                 await channel.delete()
         else:
-            # Ако потребителят е писал, не правим нищо
+            # If the user has written, we do nothing
             return
 
     @commands.command()
     @commands.has_permissions(administrator=True)
     async def ticketpanel(self, ctx):
         embed = discord.Embed(
-            title="Тикет панел",
-            description="Реагирай с 🎫 за да отвориш тикет.",
+            title="Ticket panel",
+            description="React with 🎫 to open a ticket.",
             color=discord.Color.blue()
         )
         msg = await ctx.send(embed=embed)
@@ -88,7 +88,7 @@ class Ticket(commands.Cog):
                 existing = discord.utils.get(guild.text_channels, name=f"ticket-{member.name.lower()}")
                 if existing:
                     try:
-                        await member.send("Вече имаш отворен тикет!")
+                        await member.send("You already have an open ticket!")
                     except:
                         pass
                     panel_channel = self.bot.get_channel(payload.channel_id)
@@ -108,7 +108,7 @@ class Ticket(commands.Cog):
 
                 embed = discord.Embed(
                     title="Тикет",
-                    description=f"Здравей {member.mention}! Реагирай с 🔒 за да затвориш тикета си.",
+                    description=f"Hello {member.mention}! React with 🔒 to close your ticket.",
                     color=discord.Color.red()
                 )
                 ticket_msg = await channel.send(embed=embed)
