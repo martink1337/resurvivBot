@@ -2,12 +2,12 @@ import discord
 from discord.ext import commands
 import aiohttp
 import aiosqlite
-
+from config import config  # Импортираме конфигурацията
 
 class Player(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.url = "https://api.survev.io/api/user_stats"
+        self.url = config.get("user_stats_api_url", "https://api.survev.io/api/user_stats")  # Използваме стойността от конфигурацията
         self.headers = {"content-type": "application/json; charset=UTF-8"}
         self.name = "Player"
         self.msg = "**Argument #1**: Player Name \n**Example**: `s!player obsidian_mb`\n**NOTE**: You must put in the **user's account name** which might differ with their in game name."
