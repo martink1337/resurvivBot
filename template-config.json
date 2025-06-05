@@ -4,5 +4,16 @@
   "transcripts_channel_id": 234234233,
   "leaderboard_api_url": "https://api.survev.io/api/leaderboard",
   "user_stats_api_url": "https://api.survev.io/api/user_stats",
-  "match_history_api_url": "https://api.survev.io/api/match_history"
+  "match_history_api_url": "https://api.survev.io/api/match_history",
+  "privileged_roles": [
+    "owner",
+    "moderator",
+    "admin",
+    "helper",
+    "admins",
+    "owners",
+    "moderators",
+    "manager",
+    "managers"
+  ]
 }
