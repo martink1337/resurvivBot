@@ -35,9 +35,11 @@ class Help(commands.Cog):
         with open("cogs/votes.json", "r") as f:
             json_votes = json.load(f)
         vote_count = json_votes["votes"]
+        soloinfo = prefix + "soloinfo"
+        duoinfo = prefix + "duoinfo"
         embed = discord.Embed(
-            title=f" Current Servers: `{len(self.bot.guilds)}`\n\U0001f44d Using the Surviv Stats Bot \U0001f44d",
-            description=f"\U0001F52B `{gun_form}(gun_name)`: **Gets the Stats of a Gun** *notice the space \n ℹ️`{play_form}(player)`: **Getting Stats of Player** *notice the space \n \U0001F3D3 `{ping_form}`: **Check the Latency of Surviv Stat Bot** \n ⏫ `{up_form}`: **Get the current update in survev.io** \n 🔪 `{mel_form}(melee)`: **Get the Stats of the Melee Weapon** \n 📖 `{is_form}(text)`: **Log in issue in surviv stat bot that we will try to fix** \n 📝 `{sug_form}(text)`: **Suggest a feature for the bot** \n 👀 `{twitch_form}`: **Gets Current Twitch Streamers** \n 🗳️ `{vote_form}`: **Cast your vote that you like the bot.** Vote Count: `{vote_count}` \n 🤔 `{change_form}(prefix)`: **Changes Prefix from `{prefix}` to something else.** \n  NOTE: Only server members with roles: **Owner, Moderator, Manager, or Admin** are allowed to use the **Change Prefix** Command.",
+            title=f" Current Servers: `{len(self.bot.guilds)}`\n\U0001f44d Using the Resurviv Stats Bot \U0001f44d",
+            description=f"\U0001F52B `{gun_form}(gun_name)`: **Gets the Stats of a Gun** *notice the space \n ℹ️`{play_form}(player)`: **Getting Stats of Player** *notice the space \n \U0001F3D3 `{ping_form}`: **Check the Latency of Surviv Stat Bot** \n ⏫ `{up_form}`: **Get the current update in survev.io** \n 🔪 `{mel_form}(melee)`: **Get the Stats of the Melee Weapon** \n 📖 `{is_form}(text)`: **Log in issue in surviv stat bot that we will try to fix** \n 📝 `{sug_form}(text)`: **Suggest a feature for the bot** \n 👀 `{twitch_form}`: **Gets Current Twitch Streamers** \n 🗳️ `{vote_form}`: **Cast your vote that you like the bot.** Vote Count: `{vote_count}` \n 📋 `{soloinfo}`: **Shows top 10 players in solo Leaderboard.** \n 📋 `{duoinfo}`: **Shows top 10 players in duo Leaderboard.** \n 🤔 `{change_form}(prefix)`: **Changes Prefix from `{prefix}` to something else.** \n  NOTE: Only server members with roles: **Owner, Moderator, Manager, or Admin** are allowed to use the **Change Prefix** Command.",
             color=0x00B037,
         )
         await ctx.send(embed=embed)
