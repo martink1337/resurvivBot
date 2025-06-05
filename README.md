@@ -45,7 +45,9 @@ Running the bot:
 `cd FolderName`
 3 run the following command
 `pip3 install -r requirements.txt`
-4 start the bot with
+4 rename the file template-config.json to
+`config.json` and change all inputs
+5 start the bot with
 `python3 main.py`
 
 Dependency:
