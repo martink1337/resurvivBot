@@ -4,7 +4,7 @@
 import discord
 from discord.ext import commands
 import aiosqlite
-from config import config  # Добави най-отгоре ако още го няма
+from config import config
 
 class Data(commands.Cog):
     def __init__(self, bot):

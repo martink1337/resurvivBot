@@ -1,13 +1,13 @@
 import discord
 from discord.ext import commands
 import aiosqlite
-
+from config import config
 
 class Feedback(commands.Cog):
     def __init__(self, bot):
         # Takes any number of args
         self.bot = bot
-        self.admin = [220212030546771970]
+        self.admin = config.get("feedback_admins", [])  # Взима списъка с админи от конфигурацията
 
     @commands.Cog.listener()
     async def on_ready(self):
