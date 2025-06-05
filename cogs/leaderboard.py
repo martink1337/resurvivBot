@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 import requests
-from config import config  # Твоя модул config, от който четеш настройките
+from config import config  # Your config module, from which you read the settings
 
 class Leaderboard(commands.Cog):
     def __init__(self, bot):
