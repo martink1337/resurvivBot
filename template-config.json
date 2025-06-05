@@ -1,0 +1,6 @@
+{
+  "bot_token": "bot token here",
+  "ticket_category_id": 12312312312,
+  "transcripts_channel_id": 234234233,
+  "leaderboard_api_url": "https://api.survev.io/api/leaderboard"
+}

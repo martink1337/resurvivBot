@@ -1,0 +1,5 @@
+discord.py
+aiosqlite
+nest_asyncio
+beautifulsoup4
+requests
