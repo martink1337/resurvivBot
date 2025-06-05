@@ -1,15 +1,17 @@
 import discord
-from discord.ext import commands, tasks
+from discord.ext import commands
 import asyncio
 import random
 import re
+from config import config  # Импортираме конфигурацията
 
 class Giveaway(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        self.staff_roles = config.get("staff_roles", [])  # Зареждаме ролите от config
 
     def convert_time(self, time_str):
-        # Конвертира време като 10s, 5m, 1h в секунди
+        # Конвертира време като 10s, 5m, 1h, 1d в секунди
         match = re.match(r"(\d+)(s|m|h|d)", time_str)
         if not match:
             return None
@@ -19,6 +21,12 @@ class Giveaway(commands.Cog):
 
     @commands.command()
     async def giveaway(self, ctx, time: str = None, *, prize: str = None):
+        # Проверка за роля
+        user_roles = [r.name.lower() for r in ctx.author.roles]
+        if not any(role in user_roles for role in self.staff_roles):
+            await ctx.send("Нямаш нужните права да стартираш giveaway.")
+            return
+
         if not time or not prize:
             await ctx.send("Моля, въведи време и награда, пример: `s!giveaway 1m Безплатно нитро`")
             return
