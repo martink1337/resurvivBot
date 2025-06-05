@@ -7,7 +7,7 @@ class Feedback(commands.Cog):
     def __init__(self, bot):
         # Takes any number of args
         self.bot = bot
-        self.admin = config.get("feedback_admins", [])  # Взима списъка с админи от конфигурацията
+        self.admin = config.get("feedback_admins", [])  # Gets the list of admins from the configuration
 
     @commands.Cog.listener()
     async def on_ready(self):
@@ -100,7 +100,7 @@ class Feedback(commands.Cog):
         if author in self.admin:
             conn = await aiosqlite.connect("suggestions.db")
             c = await conn.cursor()
-            # Създаваме таблицата, ако я няма
+            # Create the table if it doesn't exist
             await c.execute(
                 """CREATE TABLE IF NOT EXISTS suggestions(
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -112,7 +112,7 @@ class Feedback(commands.Cog):
             b = await c.execute("SELECT * FROM suggestions")
             b = await b.fetchall()
             if not b:
-                await ctx.send("Все още няма добавени предложения.")
+                await ctx.send("No suggestions have been added yet.")
                 await conn.close()
                 return
 
@@ -128,14 +128,14 @@ class Feedback(commands.Cog):
             )
             user = await self.bot.fetch_user(author)
             if user is None:
-                await ctx.send("Не мога да намеря вашия Discord акаунт за да изпратя лично съобщение.")
+                await ctx.send("I can't find your Discord account to send a private message.")
                 await conn.close()
                 return
             try:
                 await user.send(embed=embed, delete_after=3600)
                 await ctx.message.add_reaction("✅")
             except discord.Forbidden:
-                await ctx.send("Не мога да ти изпратя лично съобщение. Моля, провери настройките си за поверителност.")
+                await ctx.send("I can't send you a private message. Please check your privacy settings.")
             await conn.close()
         else:
             await ctx.send(
@@ -148,7 +148,7 @@ class Feedback(commands.Cog):
         if author in self.admin:
             conn = await aiosqlite.connect("issues.db")
             c = await conn.cursor()
-            # Създаваме таблицата, ако я няма
+            # Create the table if it doesn't exist
             await c.execute(
                 """CREATE TABLE IF NOT EXISTS issues(
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -160,7 +160,7 @@ class Feedback(commands.Cog):
             b = await c.execute("SELECT * FROM issues")
             b = await b.fetchall()
             if not b:
-                await ctx.send("Все още няма добавени проблеми.")
+                await ctx.send("No issues added yet.")
                 await conn.close()
                 return
 
@@ -176,14 +176,14 @@ class Feedback(commands.Cog):
             )
             user = await self.bot.fetch_user(author)
             if user is None:
-                await ctx.send("Не мога да намеря вашия Discord акаунт за да изпратя лично съобщение.")
+                await ctx.send("I can't find your Discord account to send a private message.")
                 await conn.close()
                 return
             try:
                 await user.send(embed=embed, delete_after=3600)
                 await ctx.message.add_reaction("✅")
             except discord.Forbidden:
-                await ctx.send("Не мога да ти изпратя лично съобщение. Моля, провери настройките си за поверителност.")
+                await ctx.send("I can't send you a private message. Please check your privacy settings.")
             await conn.close()
         else:
             await ctx.send(
